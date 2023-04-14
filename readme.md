@@ -27,3 +27,8 @@ dataset
     - [id].txt
   - metadata.csv
 ```
+
+## Note
+
+- Output WAV audio sample rate is 16kHz.
+- `metadata.csv` values are wrapped with double qoute `"`.
