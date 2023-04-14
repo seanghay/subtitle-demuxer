@@ -14,7 +14,7 @@ const parser = new srtParser2.default();
 function normalizeSentence(sentence) {
   return sentence
     .replace(/\n/gm, '')
-    .replace(/[។"'«»\(\)]/gm, '')
+    .replace(/[។"'«»\(\)៕]/gm, '')
     .replace(/៖/gm, '').trim()
 }
 
