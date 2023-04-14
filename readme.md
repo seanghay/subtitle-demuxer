@@ -1,4 +1,4 @@
-Create Hugginface 🤗 speech dataset from YouTube links.
+Create Huggingface 🤗 speech dataset from YouTube links.
 
 ### Run
 
