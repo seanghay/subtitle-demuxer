@@ -1,7 +1,7 @@
 import { execa } from 'execa'
 import path from 'node:path'
 
-export default async function ({ link }) {
+export default async function ({ link, lang }) {
 
   const args = [
     "--rm-cache-dir",
@@ -15,7 +15,7 @@ export default async function ({ link }) {
     "--postprocessor-args",
     "-ar 16000",
     "--sub-lang",
-    "km",
+    lang,
     "--write-sub",
     "--convert-subs",
     "srt",
