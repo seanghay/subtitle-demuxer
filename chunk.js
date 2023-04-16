@@ -27,7 +27,8 @@ export default async function () {
   await fs.mkdir("./dataset/data", { recursive: true });
   await fs.mkdir("./dataset/sentences", { recursive: true });
 
-  let csv = 'audio_path,sentence\n';
+
+  const pendingPromises = [];
 
   for await (const srtFile of fg.stream("./files/**/*.srt")) {
     const { dir } = path.parse(srtFile);
@@ -41,11 +42,14 @@ export default async function () {
       srtChunk.text = normalizeSentence(srtChunk.text);
       const outputAudioPath = path.join("dataset", "data", `${id}-${srtChunk.id}.wav`);
       const outputTextPath = path.join("dataset", "sentences", `${id}-${srtChunk.id}.txt`);
-      const relativeDirAudioPath = path.relative("./dataset", outputAudioPath);
-      csv += `${JSON.stringify(relativeDirAudioPath)},${JSON.stringify(srtChunk.text)}\n`;
-      piscina.run({ srtChunk, audioFile, outputAudioPath, outputTextPath })
+      pendingPromises.push(piscina.run({ srtChunk, audioFile, outputAudioPath, outputTextPath }))
     }
   }
 
-  await fs.writeFile(path.join("dataset", "metadata.csv"), csv, 'utf-8');
+  await Promise.all(pendingPromises);
+  console.log("Done")
 }
+
+
+// let csv = 'audio_path,sentence\n';
+// await fs.writeFile(path.join("dataset", "metadata.csv"), csv, 'utf-8');
