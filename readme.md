@@ -1,5 +1,10 @@
 Create Huggingface 🤗 speech dataset from YouTube links.
 
+## Prerequisites
+
+- `ffmpeg` must be installed on your device. [Instruction](https://ffmpeg.org/download.html)
+- `yt-dlp` must be installed on your device. [Instruction](https://github.com/yt-dlp/yt-dlp)
+
 ### Run
 
 Create a file called `links.txt` with all the YouTube links
